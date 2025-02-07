@@ -25,5 +25,5 @@ func Root(app clio.Application, packagesCmd *cobra.Command) *cobra.Command {
 
 			return nil
 		},
-	}, nil)
+	})
 }
