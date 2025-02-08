@@ -5,13 +5,12 @@ package parsers
 
 import (
 	"fmt"
-	"io"
 
 	"github.com/wagoodman/go-partybus"
 	"github.com/wagoodman/go-progress"
 
-	"github.com/anchore/syft/syft/event"
-	"github.com/anchore/syft/syft/event/monitor"
+	"advisor/internal/advisor/event"
+	"advisor/internal/advisor/event/monitor"
 )
 
 type ErrBadPayload struct {
@@ -77,42 +76,11 @@ func ParseCatalogerTaskStarted(e partybus.Event) (progress.StagedProgressable, *
 	return mon, &source, nil
 }
 
-func ParseAttestationStartedEvent(e partybus.Event) (io.Reader, progress.Progressable, *monitor.GenericTask, error) {
-	if err := checkEventType(e.Type, event.AttestationStarted); err != nil {
-		return nil, nil, nil, err
-	}
-
-	source, ok := e.Source.(monitor.GenericTask)
-	if !ok {
-		return nil, nil, nil, newPayloadErr(e.Type, "Source", e.Source)
-	}
-
-	sp, ok := e.Value.(*monitor.ShellProgress)
-	if !ok {
-		return nil, nil, nil, newPayloadErr(e.Type, "Value", e.Value)
-	}
-
-	return sp.Reader, sp.Progressable, &source, nil
-}
-
 // CLI event types
 
 type UpdateCheck struct {
 	New     string
 	Current string
-}
-
-func ParseCLIAppUpdateAvailable(e partybus.Event) (*UpdateCheck, error) {
-	if err := checkEventType(e.Type, event.CLIAppUpdateAvailable); err != nil {
-		return nil, err
-	}
-
-	updateCheck, ok := e.Value.(UpdateCheck)
-	if !ok {
-		return nil, newPayloadErr(e.Type, "Value", e.Value)
-	}
-
-	return &updateCheck, nil
 }
 
 func ParseCLIReport(e partybus.Event) (string, string, error) {
