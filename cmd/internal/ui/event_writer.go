@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"advisor/advisor/event"
 	"fmt"
 	"io"
 	"strings"
@@ -9,8 +10,7 @@ import (
 	"github.com/hashicorp/go-multierror"
 	"github.com/wagoodman/go-partybus"
 
-	"advisor/internal/advisor/event"
-	"advisor/internal/advisor/event/parsers"
+	"advisor/advisor/event/parsers"
 	"advisor/internal/log"
 )
 
@@ -90,32 +90,6 @@ func writeNotifications(writer io.Writer, events ...partybus.Event) error {
 		if _, err := fmt.Fprintln(writer, style.Render(notification)); err != nil {
 			// don't let this be fatal
 			log.WithFields("error", err).Warn("failed to write final notifications")
-		}
-	}
-	return nil
-}
-
-func writeAppUpdate(writer io.Writer, events ...partybus.Event) error {
-	// 13 = high intensity magenta (ANSI 16 bit code) + italics
-	style := lipgloss.NewStyle().Foreground(lipgloss.Color("13")).Italic(true)
-
-	for _, e := range events {
-		updateCheck, err := parsers.ParseCLIAppUpdateAvailable(e)
-		if err != nil {
-			log.WithFields("error", err).Warn("failed to parse app update notification")
-			continue
-		}
-
-		if updateCheck.Current == updateCheck.New {
-			log.Tracef("update check event with identical versions: %s", updateCheck.Current)
-			continue
-		}
-
-		notice := fmt.Sprintf("A newer version of syft is available for download: %s (installed version is %s)", updateCheck.New, updateCheck.Current)
-
-		if _, err := fmt.Fprintln(writer, style.Render(notice)); err != nil {
-			// don't let this be fatal
-			log.WithFields("error", err).Warn("failed to write app update notification")
 		}
 	}
 	return nil

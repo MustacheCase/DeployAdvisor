@@ -10,8 +10,9 @@ import (
 	"github.com/wagoodman/go-partybus"
 	"github.com/wagoodman/go-progress"
 
+	advisorEvent "advisor/advisor/event"
+
 	"github.com/anchore/bubbly/bubbles/taskprogress"
-	syftEvent "github.com/anchore/syft/syft/event"
 )
 
 func TestHandler_handleFileIndexingStarted(t *testing.T) {
@@ -39,7 +40,7 @@ func TestHandler_handleFileIndexingStarted(t *testing.T) {
 				}
 
 				return partybus.Event{
-					Type:   syftEvent.FileIndexingStarted,
+					Type:   advisorEvent.FileIndexingStarted,
 					Source: "/some/path",
 					Value:  mon,
 				}
@@ -64,7 +65,7 @@ func TestHandler_handleFileIndexingStarted(t *testing.T) {
 				}
 
 				return partybus.Event{
-					Type:   syftEvent.FileIndexingStarted,
+					Type:   advisorEvent.FileIndexingStarted,
 					Source: "/some/path",
 					Value:  mon,
 				}

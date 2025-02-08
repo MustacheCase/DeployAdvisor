@@ -1,15 +1,14 @@
 package bus
 
 import (
+	"advisor/advisor/event"
+	monitor2 "advisor/advisor/event/monitor"
 	"advisor/internal/redact"
 
 	"github.com/wagoodman/go-partybus"
 	"github.com/wagoodman/go-progress"
 
 	"github.com/anchore/clio"
-
-	"github.com/anchore/syft/syft/event"
-	"github.com/anchore/syft/syft/event/monitor"
 )
 
 func Exit() {
@@ -38,8 +37,8 @@ func Notify(message string) {
 	})
 }
 
-func StartCatalogerTask(info monitor.GenericTask, size int64, initialStage string) *monitor.CatalogerTaskProgress {
-	t := &monitor.CatalogerTaskProgress{
+func StartCatalogerTask(info monitor2.GenericTask, size int64, initialStage string) *monitor2.CatalogerTaskProgress {
+	t := &monitor2.CatalogerTaskProgress{
 		AtomicStage: progress.NewAtomicStage(initialStage),
 		Manual:      progress.NewManual(size),
 	}

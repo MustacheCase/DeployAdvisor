@@ -7,11 +7,13 @@ import (
 	"github.com/wagoodman/go-partybus"
 	"github.com/wagoodman/go-progress"
 
+	"advisor/internal/log"
+
+	"advisor/advisor/event/monitor"
+	advisorEventParsers "advisor/advisor/event/parsers"
+
 	"github.com/anchore/bubbly/bubbles/taskprogress"
 	"github.com/anchore/bubbly/bubbles/tree"
-	"github.com/anchore/syft/internal/log"
-	"github.com/anchore/syft/syft/event/monitor"
-	syftEventParsers "github.com/anchore/syft/syft/event/parsers"
 )
 
 // we standardize how rows are instantiated to ensure consistency in the appearance across the UI
@@ -87,7 +89,7 @@ func (cts catalogerTaskModel) View() string {
 }
 
 func (m *Handler) handleCatalogerTaskStarted(e partybus.Event) ([]tea.Model, tea.Cmd) {
-	mon, info, err := syftEventParsers.ParseCatalogerTaskStarted(e)
+	mon, info, err := advisorEventParsers.ParseCatalogerTaskStarted(e)
 	if err != nil {
 		log.WithFields("error", err).Warn("unable to parse event")
 		return nil, nil

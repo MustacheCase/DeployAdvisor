@@ -4,13 +4,12 @@ Package parsers provides parser helpers to extract payloads for each event type 
 package parsers
 
 import (
+	"advisor/advisor/event"
+	"advisor/advisor/event/monitor"
 	"fmt"
 
 	"github.com/wagoodman/go-partybus"
 	"github.com/wagoodman/go-progress"
-
-	"advisor/internal/advisor/event"
-	"advisor/internal/advisor/event/monitor"
 )
 
 type ErrBadPayload struct {

@@ -8,8 +8,9 @@ import (
 	"io"
 	"os"
 
+	ui2 "advisor/cmd/cli/ui"
+
 	"github.com/anchore/clio"
-	ui2 "github.com/anchore/syft/cmd/syft/cli/ui"
 )
 
 func AppClioSetupConfig(id clio.Identification, out io.Writer) *clio.SetupConfig {

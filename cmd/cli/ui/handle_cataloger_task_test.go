@@ -9,8 +9,8 @@ import (
 	"github.com/wagoodman/go-partybus"
 	"github.com/wagoodman/go-progress"
 
-	syftEvent "github.com/anchore/syft/syft/event"
-	"github.com/anchore/syft/syft/event/monitor"
+	advisorEvent "advisor/advisor/event"
+	"advisor/advisor/event/monitor"
 )
 
 func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
@@ -34,7 +34,7 @@ func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
 				value.Manual.Add(50)
 
 				return partybus.Event{
-					Type: syftEvent.CatalogerTaskStarted,
+					Type: advisorEvent.CatalogerTaskStarted,
 					Source: monitor.GenericTask{
 						Title:              title,
 						HideOnSuccess:      false,
@@ -56,7 +56,7 @@ func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
 				value.Manual.Add(50)
 
 				return partybus.Event{
-					Type: syftEvent.CatalogerTaskStarted,
+					Type: advisorEvent.CatalogerTaskStarted,
 					Source: monitor.GenericTask{
 						Title:              title,
 						HideOnSuccess:      false,
@@ -79,7 +79,7 @@ func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
 				value.SetCompleted()
 
 				return partybus.Event{
-					Type: syftEvent.CatalogerTaskStarted,
+					Type: advisorEvent.CatalogerTaskStarted,
 					Source: monitor.GenericTask{
 						Title:              title,
 						HideOnSuccess:      false,
@@ -102,7 +102,7 @@ func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
 				value.SetCompleted()
 
 				return partybus.Event{
-					Type: syftEvent.CatalogerTaskStarted,
+					Type: advisorEvent.CatalogerTaskStarted,
 					Source: monitor.GenericTask{
 						Title:              title,
 						HideOnSuccess:      false,
@@ -125,7 +125,7 @@ func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
 				value.SetCompleted()
 
 				return partybus.Event{
-					Type: syftEvent.CatalogerTaskStarted,
+					Type: advisorEvent.CatalogerTaskStarted,
 					Source: monitor.GenericTask{
 						Title:              title,
 						HideOnSuccess:      true,
@@ -169,7 +169,7 @@ func TestHandler_handleCatalogerTaskStarted(t *testing.T) {
 
 			models, cmd := handler.Handle(
 				partybus.Event{
-					Type:   syftEvent.CatalogerTaskStarted,
+					Type:   advisorEvent.CatalogerTaskStarted,
 					Source: info,
 					Value:  progress.StagedProgressable(kickoffEvent),
 				},

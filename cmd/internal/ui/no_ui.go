@@ -1,13 +1,13 @@
 package ui
 
 import (
+	"advisor/advisor/event"
 	"io"
 	"os"
 
 	"github.com/wagoodman/go-partybus"
 
 	"github.com/anchore/clio"
-	"github.com/anchore/syft/syft/event"
 )
 
 var _ clio.UI = (*NoUI)(nil)

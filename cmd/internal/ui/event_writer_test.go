@@ -1,15 +1,13 @@
 package ui
 
 import (
+	"advisor/advisor/event"
 	"bytes"
 	"testing"
 
 	"github.com/gkampitakis/go-snaps/snaps"
 	"github.com/stretchr/testify/require"
 	"github.com/wagoodman/go-partybus"
-
-	"github.com/anchore/syft/syft/event"
-	"github.com/anchore/syft/syft/event/parsers"
 )
 
 func Test_writeEvents(t *testing.T) {
@@ -34,13 +32,6 @@ func Test_writeEvents(t *testing.T) {
 					Value: "<notification 2>",
 				},
 				{
-					Type: event.CLIAppUpdateAvailable,
-					Value: parsers.UpdateCheck{
-						New:     "v0.33.0",
-						Current: "[not provided]",
-					},
-				},
-				{
 					Type:  event.CLINotification,
 					Value: "<notification 3>",
 				},
@@ -62,13 +53,6 @@ func Test_writeEvents(t *testing.T) {
 				{
 					Type:  event.CLINotification,
 					Value: "<notification 1>",
-				},
-				{
-					Type: event.CLIAppUpdateAvailable,
-					Value: parsers.UpdateCheck{
-						New:     "<new version>",
-						Current: "<current version>",
-					},
 				},
 				{
 					Type:  event.CLIReport,

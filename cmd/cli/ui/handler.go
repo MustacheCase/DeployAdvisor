@@ -6,10 +6,10 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/wagoodman/go-partybus"
 
+	advisorEvent "advisor/advisor/event"
+
 	"github.com/anchore/bubbly"
 	"github.com/anchore/bubbly/bubbles/taskprogress"
-	stereoscopeEvent "github.com/anchore/stereoscope/pkg/event"
-	syftEvent "github.com/anchore/syft/syft/event"
 )
 
 var _ interface {
@@ -51,13 +51,8 @@ func New(cfg HandlerConfig) *Handler {
 
 	// register all supported event types with the respective handler functions
 	d.AddHandlers(map[partybus.EventType]bubbly.EventHandlerFn{
-		stereoscopeEvent.PullDockerImage:     simpleHandler(h.handlePullDockerImage),
-		stereoscopeEvent.PullContainerdImage: simpleHandler(h.handlePullContainerdImage),
-		stereoscopeEvent.ReadImage:           simpleHandler(h.handleReadImage),
-		stereoscopeEvent.FetchImage:          simpleHandler(h.handleFetchImage),
-		syftEvent.FileIndexingStarted:        simpleHandler(h.handleFileIndexingStarted),
-		syftEvent.AttestationStarted:         simpleHandler(h.handleAttestationStarted),
-		syftEvent.CatalogerTaskStarted:       h.handleCatalogerTaskStarted,
+		advisorEvent.FileIndexingStarted:  simpleHandler(h.handleFileIndexingStarted),
+		advisorEvent.CatalogerTaskStarted: h.handleCatalogerTaskStarted,
 	})
 
 	return h

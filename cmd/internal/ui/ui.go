@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"advisor/advisor/event"
 	"fmt"
 	"io"
 	"os"
@@ -17,7 +18,6 @@ import (
 	"github.com/anchore/bubbly/bubbles/frame"
 	"github.com/anchore/clio"
 	"github.com/anchore/go-logger"
-	"github.com/anchore/syft/syft/event"
 )
 
 var _ interface {
@@ -125,7 +125,6 @@ func (m UI) RespondsTo() []partybus.EventType {
 	return append([]partybus.EventType{
 		event.CLIReport,
 		event.CLINotification,
-		event.CLIAppUpdateAvailable,
 	}, m.handler.RespondsTo()...)
 }
 
@@ -154,7 +153,7 @@ func (m *UI) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		log.WithFields("component", "ui").Tracef("event: %q", msg.Type)
 
 		switch msg.Type {
-		case event.CLIReport, event.CLINotification, event.CLIAppUpdateAvailable:
+		case event.CLIReport, event.CLINotification:
 			// keep these for when the UI is terminated to show to the screen (or perform other events)
 			m.finalizeEvents = append(m.finalizeEvents, msg)
 
