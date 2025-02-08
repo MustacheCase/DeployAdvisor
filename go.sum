@@ -12,8 +12,6 @@ github.com/anchore/fangs v0.0.0-20241014201141-b6e4b3469f10 h1:w+HibE+e/heP6ysAD
 github.com/anchore/fangs v0.0.0-20241014201141-b6e4b3469f10/go.mod h1:s0L1//Sxn6Rq0Dcxx+dmT/RRmD9HhsaJjJkPUJHLJLM=
 github.com/anchore/go-logger v0.0.0-20230725134548-c21dafa1ec5a h1:nJ2G8zWKASyVClGVgG7sfM5mwoZlZ2zYpIzN2OhjWkw=
 github.com/anchore/go-logger v0.0.0-20230725134548-c21dafa1ec5a/go.mod h1:ubLFmlsv8/DFUQrZwY5syT5/8Er3ugSr4rDFwHsE3hg=
-github.com/anchore/stereoscope v0.0.13 h1:9Ivkh7k+vOeG3JHrt44jOg/8UdZrCvMsSjLQ7trHBig=
-github.com/anchore/stereoscope v0.0.13/go.mod h1:QfhhFc2pezp5aX/dVJ5qnBFpBUv5+KUTphwaQLxMUig=
 github.com/andreyvit/diff v0.0.0-20170406064948-c7f18ee00883/go.mod h1:rCTlJbsFo29Kk6CurOXKm700vrz8f0KW0JNfpkRJY/8=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1 h1:HwpRHbFMcZLEVr42D4p7XBqjyuxQH5SMiErDT4WkJ2k=
 github.com/aymanbagabas/go-osc52/v2 v2.0.1/go.mod h1:uYgXzlJ7ZpABp8OJ+exZzJJhRNQ2ASbcXHWsFqH8hp8=
