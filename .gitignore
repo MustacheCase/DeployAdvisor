@@ -7,7 +7,7 @@
 *.dll
 *.so
 *.dylib
-
+*.idea
 # Test binary, built with `go test -c`
 *.test
 
@@ -23,3 +23,11 @@ go.work.sum
 
 # env file
 .env
+
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore dependency directories
+vendor/
